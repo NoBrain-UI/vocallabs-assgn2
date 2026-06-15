@@ -2,16 +2,28 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useSignUpEmailPassword, useAuthenticationStatus } from "@nhost/nextjs";
+import {
+  useSignUpEmailPassword,
+  useAuthenticationStatus,
+} from "@nhost/nextjs";
 import { AuthForm } from "@/components/auth-form";
 
 export default function SignupPage() {
   const router = useRouter();
-  const { isAuthenticated, isLoading: authLoading } = useAuthenticationStatus();
-  const { signUpEmailPassword, isLoading, isError, error } = useSignUpEmailPassword();
+  const {
+    isAuthenticated,
+    isLoading: authLoading,
+  } = useAuthenticationStatus();
 
-  const [formError, setFormError] = useState<string>("");
-  const [successMessage, setSuccessMessage] = useState<string>("");
+  const {
+    signUpEmailPassword,
+    isLoading,
+    isError,
+    error,
+  } = useSignUpEmailPassword();
+
+  const [formError, setFormError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     if (!authLoading && isAuthenticated) {
@@ -33,20 +45,24 @@ export default function SignupPage() {
 
     console.log("signup result", result);
 
+    // Error case
     if (result.isError) {
       setFormError(
         result.error?.message || "Sign up failed. Please try again."
       );
-    } else if (result.isSuccess) {
-      // Original logic preserve
-      if (result.needsEmailVerification) {
-        setSuccessMessage(
-          "Verification email sent. Please check your inbox and verify your account."
-        );
-      } else {
-        router.push("/dashboard");
-      }
+      return;
     }
+
+    // Email verification case
+    if (result.needsEmailVerification) {
+      setSuccessMessage(
+        "Verification email sent. Please check your inbox and verify your account."
+      );
+      return;
+    }
+
+    // Auto-login case
+    router.push("/dashboard");
   };
 
   if (authLoading) return null;
@@ -72,6 +88,7 @@ export default function SignupPage() {
             padding: "12px 20px",
             borderRadius: "8px",
             zIndex: 9999,
+            fontWeight: 500,
           }}
         >
           {successMessage}
