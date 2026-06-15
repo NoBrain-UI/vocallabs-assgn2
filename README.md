@@ -1,5 +1,14 @@
 # 🎙️ VoiceScribe — Real-time Transcription App
 
+## 🧪 Test Credentials (Dev Only)
+
+| Field | Value |
+|---|---|
+| Email | `xetofo9636@dyleris.com` |
+| Password | `monu1102@` |
+
+---
+
 A **Next.js 15** application with **Nhost authentication** and **Deepgram real-time transcription**. Speak into your microphone and watch your words appear live on screen.
 
 ---
@@ -12,8 +21,6 @@ A **Next.js 15** application with **Nhost authentication** and **Deepgram real-t
 - 🌊 **Interim Results** — Words appear as you speak (not just after pauses)
 - 📋 **Copy Transcript** — One-click copy of the full transcript
 - 🔒 **Secure API Key Handling** — Deepgram key is never exposed to the browser
-- **Temp Email : xetofo9636@dyleris.com
-- **Temp Pass - monu1102@
 
 ---
 
@@ -39,14 +46,14 @@ npm install
 
 ### Step 2 — Set up Nhost
 
-1. Go to https://app.nhost.io and create a free project
-2. Find your Subdomain and Region on the project dashboard
-3. Under Settings → Authentication, enable Email + Password sign-in
+1. Go to [https://app.nhost.io](https://app.nhost.io) and create a free project
+2. Find your **Subdomain** and **Region** on the project dashboard
+3. Under **Settings → Authentication**, enable **Email + Password** sign-in
 
 ### Step 3 — Set up Deepgram
 
-1. Go to https://console.deepgram.com and create a free account
-2. Create a new API Key with Usage permissions
+1. Go to [https://console.deepgram.com](https://console.deepgram.com) and create a free account
+2. Create a new **API Key** with Usage permissions
 
 ### Step 4 — Configure environment variables
 
@@ -54,9 +61,9 @@ npm install
 cp .env.example .env.local
 ```
 
-Edit .env.local:
+Edit `.env.local`:
 
-```
+```env
 NEXT_PUBLIC_NHOST_SUBDOMAIN=your-project-subdomain
 NEXT_PUBLIC_NHOST_REGION=eu-central-1
 DEEPGRAM_API_KEY=your-deepgram-api-key
@@ -68,7 +75,7 @@ DEEPGRAM_API_KEY=your-deepgram-api-key
 npm run dev
 ```
 
-Open http://localhost:3000
+Open [http://localhost:3000](http://localhost:3000)
 
 ---
 
@@ -100,9 +107,7 @@ voicescribe/
 
 ## 🔑 API Key Security
 
-The Deepgram key never reaches the browser. The /api/deepgram-token route
-issues a temporary key (expires in 10 seconds) via Deepgram's Project API.
-The browser uses this throwaway key to open the WebSocket connection only.
+The Deepgram key **never reaches the browser**. The `/api/deepgram-token` route issues a **temporary key** (expires in 10 seconds) via Deepgram's Project API. The browser uses this throwaway key to open the WebSocket connection only.
 
 ---
 
@@ -112,13 +117,21 @@ The browser uses this throwaway key to open the WebSocket connection only.
 npx vercel
 ```
 
-Add environment variables in Project → Settings → Environment Variables.
+Add environment variables in **Project → Settings → Environment Variables**.
 
 ---
 
 ## 🛠️ Troubleshooting
 
-- "Microphone access denied": Allow mic access in your browser's address bar
-- "Deepgram API key not configured": Check .env.local has DEEPGRAM_API_KEY set  
-- Blank page after login: Verify NEXT_PUBLIC_NHOST_SUBDOMAIN and REGION are correct
-- Email verification required: Disable it in Nhost auth settings for development
+| Problem | Fix |
+|---|---|
+| "Microphone access denied" | Allow mic access in your browser's address bar |
+| "Deepgram API key not configured" | Check `.env.local` has `DEEPGRAM_API_KEY` set |
+| Blank page after login | Verify `NEXT_PUBLIC_NHOST_SUBDOMAIN` and `REGION` are correct |
+| Email verification required | Disable it in Nhost auth settings for development |
+
+---
+
+## 📄 License
+
+MIT
