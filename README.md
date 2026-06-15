@@ -12,6 +12,8 @@ A **Next.js 15** application with **Nhost authentication** and **Deepgram real-t
 - 🌊 **Interim Results** — Words appear as you speak (not just after pauses)
 - 📋 **Copy Transcript** — One-click copy of the full transcript
 - 🔒 **Secure API Key Handling** — Deepgram key is never exposed to the browser
+- **Temp Email : xetofo9636@dyleris.com
+- **Temp Pass - monu1102@
 
 ---
 
